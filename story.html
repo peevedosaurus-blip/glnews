@@ -432,6 +432,7 @@
 
       // Build article
       const bodyHTML = f.body ? renderNode(f.body) : '<p>No content available.</p>';
+      const videoUrl = f.videoUrl || f.videoURL || f.video_url || f.videourl || '';
 
       root.innerHTML = `
         ${breadcrumb}
@@ -448,8 +449,8 @@
             </div>
           </div>
         </div>
-        ${heroImgUrl ? `<div class="article-hero-img-wrap"><img src="${heroImgUrl}" alt="${f.headline}" /></div>` : ''}
-        ${buildVideoEmbed(f.videoUrl)}
+        ${heroImgUrl && !videoUrl ? `<div class="article-hero-img-wrap"><img src="${heroImgUrl}" alt="${f.headline}" /></div>` : ''}
+        ${buildVideoEmbed(videoUrl)}
         <div class="article-layout">
           <article class="article-body">${bodyHTML}</article>
           <aside class="article-sidebar">
