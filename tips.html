@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Submit a Tip — GLNewsReports</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --crimson: #8B0000; --crimson-dk: #5A0000; --crimson-lt: #A52020;
+      --navy: #0D1B2A; --navy-lt: #162336;
+      --offwhite: #F7F4EF; --warm-gray: #E8E4DE; --mid-gray: #9A9188;
+      --text: #1A1412; --text-light: #4A4540; --rule: #D4CFC8;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Source Serif 4', Georgia, serif; background: var(--offwhite); color: var(--text); line-height: 1.7; }
+    a { color: inherit; text-decoration: none; }
+
+    .topbar {
+      background: var(--navy); color: #aab4bf;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 6px 2rem;
+    }
+    .topbar a { color: #aab4bf; transition: color .2s; }
+    .topbar a:hover { color: #fff; }
+    .topbar-right { display: flex; gap: 1.4rem; }
+
+    header { background: var(--navy); border-bottom: 3px solid var(--crimson); }
+    .header-inner {
+      max-width: 1280px; margin: 0 auto; padding: 1rem 2rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .logo-wrap img { height: 80px; width: auto; display: block; transition: opacity .2s; }
+    .logo-wrap:hover img { opacity: .88; }
+    .tagline { color: #8fa3b5; font-family: 'Source Serif 4', serif; font-style: italic; font-size: 1.2rem; margin-top: 4px; }
+
+    nav { background: var(--crimson-dk); border-bottom: 1px solid rgba(255,255,255,.08); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,.35); }
+    .nav-inner { max-width: 1280px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; gap: 0; overflow-x: auto; }
+    nav a { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,.85); padding: 14px 18px; border-bottom: 3px solid transparent; transition: color .2s, border-color .2s, background .2s; display: block; white-space: nowrap; }
+    nav a:hover, nav a.active { color: #fff; border-bottom-color: #fff; background: rgba(255,255,255,.06); }
+
+    /* PAGE HERO */
+    .page-hero {
+      background: linear-gradient(135deg, var(--crimson-dk) 0%, var(--navy) 100%);
+      padding: 4rem 2rem;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(-45deg, rgba(255,255,255,.015) 0, rgba(255,255,255,.015) 1px, transparent 1px, transparent 40px);
+    }
+    .page-hero-inner { position: relative; max-width: 680px; margin: 0 auto; }
+    .page-hero .eyebrow { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 1rem; }
+    .page-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 900; color: #fff; line-height: 1.15; margin-bottom: 1rem; }
+    .page-hero p { color: rgba(255,255,255,.65); font-size: 1.05rem; }
+
+    /* MAIN */
+    .main-content { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem; }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    /* FORM */
+    .form-card {
+      background: #fff;
+      border: 1px solid var(--rule);
+      padding: 2.5rem;
+    }
+    .section-label {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--crimson); border-bottom: 2px solid var(--crimson);
+      padding-bottom: 6px; margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); margin-left: 6px; }
+
+    .form-group { margin-bottom: 1.4rem; }
+    .form-group label {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 0.75rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-light); margin-bottom: 6px;
+    }
+    .form-group label .req { color: var(--crimson); margin-left: 2px; }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 0.95rem;
+      color: var(--text);
+      background: var(--offwhite);
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      padding: 10px 14px;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+      resize: vertical;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--crimson);
+      box-shadow: 0 0 0 3px rgba(139,0,0,.08);
+      background: #fff;
+    }
+    .form-group textarea { min-height: 160px; }
+    .form-hint { font-size: 0.78rem; color: var(--mid-gray); margin-top: 5px; font-style: italic; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--crimson);
+      color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 0.9rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border: none;
+      padding: 14px 24px;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: background .2s, transform .1s;
+      margin-top: 0.5rem;
+    }
+    .submit-btn:hover { background: var(--crimson-lt); }
+    .submit-btn:active { transform: translateY(1px); }
+
+    .privacy-note {
+      margin-top: 1rem;
+      font-size: 0.78rem;
+      color: var(--mid-gray);
+      text-align: center;
+      line-height: 1.5;
+    }
+    .privacy-note a { color: var(--crimson); border-bottom: 1px solid transparent; transition: border-color .2s; }
+    .privacy-note a:hover { border-color: var(--crimson); }
+
+    /* SUCCESS MESSAGE */
+    .success-msg {
+      display: none;
+      background: #f0faf0;
+      border: 1px solid #4caf50;
+      border-left: 4px solid #4caf50;
+      padding: 1.25rem;
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      color: #2d572c;
+    }
+
+    /* SIDEBAR */
+    .sidebar-info { }
+    .info-card {
+      border-left: 4px solid var(--crimson);
+      padding: 1.5rem;
+      background: #fff;
+      margin-bottom: 1.5rem;
+    }
+    .info-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700;
+      margin-bottom: 0.75rem; color: var(--text);
+    }
+    .info-card p { font-size: 0.87rem; color: var(--text-light); line-height: 1.65; }
+
+    .confidentiality-box {
+      background: var(--navy);
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      color: #fff;
+    }
+    .confidentiality-box .shield {
+      font-size: 2.5rem; margin-bottom: 0.75rem; display: block;
+    }
+    .confidentiality-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700;
+      margin-bottom: 0.75rem; color: #fff;
+    }
+    .confidentiality-box p { font-size: 0.83rem; color: #7a90a0; line-height: 1.65; }
+    .confidentiality-box ul {
+      list-style: none; margin-top: 1rem;
+    }
+    .confidentiality-box ul li {
+      font-size: 0.83rem; color: #7a90a0; padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .confidentiality-box ul li:last-child { border-bottom: none; }
+    .confidentiality-box ul li::before { content: '✓'; color: #4caf50; font-weight: 700; flex-shrink: 0; }
+
+    .secure-tip-note {
+      background: var(--warm-gray);
+      padding: 1.25rem;
+      font-size: 0.82rem;
+      color: var(--text-light);
+      line-height: 1.6;
+      border-top: 3px solid var(--mid-gray);
+    }
+    .secure-tip-note strong { color: var(--text); }
+
+    /* FOOTER */
+    footer { background: var(--navy); color: #7a90a0; margin-top: 3rem; }
+    .footer-top {
+      max-width: 1280px; margin: 0 auto; padding: 2.5rem 2rem;
+      display: grid; grid-template-columns: 280px 1fr 1fr 1fr;
+      gap: 2rem; border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .footer-brand img { height: 65px; width: auto; margin-bottom: 1rem; }
+    .footer-brand p { font-size: .83rem; line-height: 1.65; color: #6b8090; }
+    .footer-col h4 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: #fff; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,.1); padding-bottom: .5rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: .55rem; }
+    .footer-col ul a { font-size: .83rem; color: #6b8090; transition: color .2s; }
+    .footer-col ul a:hover { color: #fff; }
+    .footer-bottom { max-width: 1280px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; font-family: 'Barlow Condensed', sans-serif; font-size: .7rem; letter-spacing: .06em; color: #4a6070; }
+
+    @media (max-width: 900px) {
+      .tips-grid { grid-template-columns: 1fr; }
+      .sidebar-info { order: -1; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .secure-tip-note { grid-column: 1 / 3; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .topbar { display: none; }
+      .header-inner { flex-direction: column; text-align: center; padding: 1rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .sidebar-info { grid-template-columns: 1fr; }
+      .secure-tip-note { grid-column: auto; }
+      .page-hero h1 { font-size: 2rem; }
+      .form-card { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <span id="current-date"></span>
+  <div class="topbar-right">
+    <a href="about.html">About</a>
+    <a href="tips.html">Submit a Tip</a>
+    <a href="#">Newsletter</a>
+  </div>
+</div>
+
+<header>
+  <div class="header-inner">
+    <a class="logo-wrap" href="index.html">
+      <img src="https://res.cloudinary.com/duvikni5b/image/upload/v1774455543/GLnews_-_Lettering_Only_cxzui4.png" alt="GL News Reports" />
+    </a>
+    <p class="tagline">Stories That Matter. Bringing you the latest news with honesty and insight every day.</p>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html">Home</a>
+    <a href="#">Local</a>
+    <a href="#">Politics</a>
+    <a href="#">Investigations</a>
+    <a href="#">Education</a>
+    <a href="#">Business</a>
+    <a href="#">Community</a>
+    <a href="#">Opinion</a>
+    <a href="tips.html" class="active" style="margin-left:auto;">Submit a Tip</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="eyebrow">Contact the Newsroom</div>
+    <h1>Get in Touch</h1>
+    <p>Questions or tips? We're here to listen.</p>
+  </div>
+</div>
+
+<div class="main-content">
+  <div class="tips-grid">
+
+    <!-- FORM -->
+    <div>
+      <div class="form-card">
+        <div class="section-label">Submit a Tip or Question</div>
+
+        <form id="tip-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" placeholder="Full name" autocomplete="name" />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address<span class="req">*</span></label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required />
+              <div class="form-hint">Required so we can follow up if needed.</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="Briefly describe your tip or question" />
+          </div>
+
+          <div class="form-group">
+            <label for="tip">Your Tip<span class="req">*</span></label>
+            <textarea id="tip" name="tip" placeholder="Share what you know. Include as much detail as possible: names, dates, locations, documents, or anything that can help us investigate." required></textarea>
+            <div class="form-hint">All tips are handled with strict confidentiality. You may remain anonymous.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="docs">Supporting Documents or Links</label>
+            <input type="text" id="docs" name="docs" placeholder="Paste links to documents, videos, or other evidence (optional)" />
+          </div>
+
+          <button type="submit" class="submit-btn">Send Tip →</button>
+
+          <div class="success-msg" id="success-msg">
+            ✓ &nbsp;Your tip has been received. Thank you for reaching out. A member of our team will review your submission shortly.
+          </div>
+
+          <p class="privacy-note">
+            By submitting, you agree to our <a href="privacy.html">Privacy Policy</a>. We take source confidentiality seriously and will never publish identifying information without explicit consent.
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar-info">
+
+      <div class="confidentiality-box">
+        <span class="shield">🔒</span>
+        <h3>Your Privacy Is Protected</h3>
+        <p>GLNewsReports takes source protection extremely seriously. We follow the highest standards of journalistic ethics when handling tips.</p>
+        <ul>
+          <li>Anonymous tips accepted</li>
+          <li>Source identity never disclosed</li>
+          <li>Documents handled securely</li>
+          <li>No identifying info published without consent</li>
+          <li>Tips reviewed by senior editorial staff</li>
+        </ul>
+      </div>
+
+      <div class="info-card">
+        <h3>What Makes a Good Tip?</h3>
+        <p>The most actionable tips include specific names, dates, locations, and documents. Even partial information can help us find the full story. If you have a sense something is wrong but aren't sure, tell us what you know. We'll take it from there.</p>
+      </div>
+
+      <div class="info-card">
+        <h3>What Happens Next?</h3>
+        <p>Tips are reviewed by our editorial team within 48 hours. If your tip leads to an investigation, a reporter may reach out for a follow-up conversation. Not all tips result in published stories, but every submission is read and taken seriously.</p>
+      </div>
+
+      <div class="secure-tip-note">
+        <strong>Need extra security?</strong> For highly sensitive tips, consider using a secure email service or encrypted messaging. You can also mail documents to our editorial office. Contact us first to arrange secure delivery.
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="https://res.cloudinary.com/duvikni5b/image/upload/v1774455543/GLnews_-_Lettering_Only_cxzui4.png" alt="GL News Reports" />
+      <p>Bringing you the latest news with honesty and insight. Committed to honest stories, uncovering issues, and sharing real solutions.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Sections</h4>
+      <ul>
+        <li><a href="#">National</a></li>
+        <li><a href="#">Politics</a></li>
+        <li><a href="#">World</a></li>
+        <li><a href="#">Business</a></li>
+        <li><a href="#">Technology</a></li>
+        <li><a href="#">Health</a></li>
+        <li><a href="#">Opinion</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Investigations</h4>
+      <ul>
+        <li><a href="#">Latest Reports</a></li>
+        <li><a href="#">Archive</a></li>
+        <li><a href="#">Data &amp; Documents</a></li>
+        <li><a href="tips.html">Submit a Tip</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="tips.html">Contact</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Use</a></li>
+        <li><a href="#">Newsletter</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 GLNewsReports · <a href="https://glnewsreports.com" style="color:inherit;">glnewsreports.com</a></span>
+    <span>Journalism with integrity · All rights reserved</span>
+  </div>
+</footer>
+
+<script>
+  const d = new Date();
+  document.getElementById('current-date').textContent = d.toLocaleDateString('en-US', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+
+  document.getElementById('tip-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = document.getElementById('email').value.trim();
+    const tip = document.getElementById('tip').value.trim();
+    if (!email || !tip) {
+      alert('Please fill in the required fields (Email Address and Your Tip).');
+      return;
+    }
+    // Show success message
+    document.getElementById('success-msg').style.display = 'block';
+    this.querySelector('.submit-btn').disabled = true;
+    this.querySelector('.submit-btn').textContent = 'Tip Sent ✓';
+    this.querySelector('.submit-btn').style.background = '#4caf50';
+    // Scroll to success
+    document.getElementById('success-msg').scrollIntoView({behavior:'smooth', block:'center'});
+  });
+</script>
+</body>
+</html>
