@@ -119,7 +119,20 @@
     .breadcrumb a:hover { text-decoration: underline; }
     .breadcrumb span { margin: 0 0.5rem; }
 
-    /* LOADING / ERROR */
+    /* VIDEO EMBED */
+    .video-wrap {
+      max-width: 860px; margin: 2rem auto;
+      background: #000;
+    }
+    .video-wrap iframe {
+      width: 100%; height: 480px; display: block; border: none;
+    }
+    .video-wrap video {
+      width: 100%; max-height: 480px; display: block;
+    }
+    @media (max-width: 600px) {
+      .video-wrap iframe { height: 240px; }
+    }
     .state-msg { max-width: 860px; margin: 4rem auto; padding: 2rem; text-align: center; color: var(--mid-gray); }
     .state-msg h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--text-light); margin-bottom: 0.5rem; }
 
@@ -289,7 +302,55 @@
     }
   }
 
-  async function init() {
+  function buildVideoEmbed(url) {
+    if (!url) return '';
+
+    // YouTube: watch?v=ID or youtu.be/ID or shorts/ID
+    const ytMatch = url.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+    if (ytMatch) {
+      return `<div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/${ytMatch[1]}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>`;
+    }
+
+    // Vimeo: vimeo.com/ID
+    const vimeoMatch = url.match(/vimeo\.com\/(\d+)/);
+    if (vimeoMatch) {
+      return `<div class="video-wrap">
+        <iframe src="https://player.vimeo.com/video/${vimeoMatch[1]}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      </div>`;
+    }
+
+    // Google Drive: /file/d/ID/view or id=ID
+    const driveMatch = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/) || url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+    if (driveMatch) {
+      return `<div class="video-wrap">
+        <iframe src="https://drive.google.com/file/d/${driveMatch[1]}/preview" allow="autoplay" allowfullscreen></iframe>
+      </div>`;
+    }
+
+    // Cloudinary: res.cloudinary.com — native video player
+    if (url.includes('cloudinary.com')) {
+      return `<div class="video-wrap">
+        <video controls preload="metadata">
+          <source src="${url}" />
+          Your browser does not support the video tag.
+        </video>
+      </div>`;
+    }
+
+    // Generic fallback — try native video player
+    if (url.match(/\.(mp4|webm|ogg|mov)(\?|$)/i)) {
+      return `<div class="video-wrap">
+        <video controls preload="metadata">
+          <source src="${url}" />
+          Your browser does not support the video tag.
+        </video>
+      </div>`;
+    }
+
+    return '';
+  }
     const params = new URLSearchParams(window.location.search);
     const slug = params.get('slug');
     const root = document.getElementById('article-root');
@@ -371,6 +432,7 @@
           </div>
         </div>
         ${heroImgUrl ? `<div class="article-hero-img-wrap"><img src="${heroImgUrl}" alt="${f.headline}" /></div>` : ''}
+        ${buildVideoEmbed(f.videoUrl)}
         <div class="article-layout">
           <article class="article-body">${bodyHTML}</article>
           <aside class="article-sidebar">
