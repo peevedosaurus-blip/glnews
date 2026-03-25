@@ -582,13 +582,13 @@
 <nav>
   <div class="nav-inner">
     <a href="index.html" class="active">Home</a>
-    <a href="#">Local</a>
-    <a href="#">Politics</a>
-    <a href="#">Investigations</a>
-    <a href="#">Education</a>
-    <a href="#">Business</a>
-    <a href="#">Community</a>
-    <a href="#">Opinion</a>
+    <a href="category.html?cat=Local">Local</a>
+    <a href="category.html?cat=Politics">Politics</a>
+    <a href="category.html?cat=Investigations">Investigations</a>
+    <a href="category.html?cat=Education">Education</a>
+    <a href="category.html?cat=Business">Business</a>
+    <a href="category.html?cat=Community">Community</a>
+    <a href="category.html?cat=Opinion">Opinion</a>
     <div class="nav-search">
       <input type="text" placeholder="Search stories…" />
       <button aria-label="Search">&#128269;</button>
@@ -618,111 +618,17 @@
 
   <!-- HERO GRID -->
   <div class="section-label">Top Stories</div>
-  <div class="hero-grid">
-
-    <!-- MAIN STORY -->
-    <div class="hero-main">
-      <div class="hero-placeholder-img ph-navy">
-        <svg width="80" height="80" viewBox="0 0 80 80" fill="white"><rect x="8" y="20" width="64" height="8" rx="2"/><rect x="8" y="36" width="48" height="6" rx="2"/><rect x="8" y="50" width="56" height="6" rx="2"/><rect x="8" y="64" width="40" height="6" rx="2"/></svg>
-      </div>
-      <div class="hero-main-body">
-        <span class="hero-kicker">Investigations</span>
-        <h1 class="hero-headline"><a href="#">Questions Surround Craighead County Road Contract Awards</a></h1>
-        <p class="hero-dek">A GLNewsReports investigation into county road projects finds a pattern of contracts awarded to the same handful of vendors, raising questions about whether competitive bidding rules are being followed.</p>
-        <span class="byline">By <strong>Grendel Levy</strong> &nbsp;·&nbsp; March 25, 2026</span>
-      </div>
-    </div>
-
-    <!-- SECONDARY STORIES -->
-    <div class="hero-sec">
-      <div class="hero-sec-placeholder ph-crimson">
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="white" opacity=".2"><circle cx="24" cy="18" r="10"/><path d="M8 42c0-8.8 7.2-16 16-16s16 7.2 16 16"/></svg>
-      </div>
-      <span class="hero-kicker">Politics</span>
-      <h2 class="story-headline"><a href="#">Jonesboro Mayor Proposes New Downtown Revitalization Plan</a></h2>
-      <p class="story-dek">The proposal would bring new streetscaping, small business incentives, and a redesigned parking structure to central Jonesboro.</p>
-      <div class="byline" style="margin-top:.5rem;">March 24, 2026</div>
-    </div>
-
-    <div class="hero-sec">
-      <div class="hero-sec-placeholder ph-warm">
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="white" opacity=".2"><rect x="6" y="10" width="36" height="28" rx="3"/><path d="M16 10V6M32 10V6M6 18h36"/></svg>
-      </div>
-      <span class="hero-kicker">Education</span>
-      <h2 class="story-headline"><a href="#">ASU to Open New Engineering Building This Fall</a></h2>
-      <p class="story-dek">Arkansas State University's long-awaited engineering facility is set to welcome students in August, adding capacity for hundreds of additional enrollments.</p>
-      <div class="byline" style="margin-top:.5rem;">March 23, 2026</div>
-    </div>
-
-    <!-- SIDEBAR -->
-    <div class="hero-sidebar">
-      <div class="section-label" style="margin-bottom:.75rem;">Most Read</div>
-
-      <div class="sidebar-story">
-        <div class="sidebar-num">01</div>
-        <div class="sidebar-hl"><a href="#">Greene County School Board Faces Rezoning Backlash</a></div>
-        <div class="sidebar-meta">Education · 2h ago</div>
-      </div>
-      <div class="sidebar-story">
-        <div class="sidebar-num">02</div>
-        <div class="sidebar-hl"><a href="#">New Manufacturing Plant to Bring 200 Jobs to Paragould</a></div>
-        <div class="sidebar-meta">Business · 4h ago</div>
-      </div>
-      <div class="sidebar-story">
-        <div class="sidebar-num">03</div>
-        <div class="sidebar-hl"><a href="#">Storm Damage Assessments Underway in Mississippi County</a></div>
-        <div class="sidebar-meta">Local · 6h ago</div>
-      </div>
-      <div class="sidebar-story">
-        <div class="sidebar-num">04</div>
-        <div class="sidebar-hl"><a href="#">Trumann Water System Repairs Enter Second Week</a></div>
-        <div class="sidebar-meta">Community · 8h ago</div>
-      </div>
-      <div class="sidebar-story">
-        <div class="sidebar-num">05</div>
-        <div class="sidebar-hl"><a href="#">NEA Regional Airport Eyes Expanded Service Routes</a></div>
-        <div class="sidebar-meta">Business · 10h ago</div>
-      </div>
+  <div class="hero-grid" id="hero-grid">
+    <div style="grid-column:1/-1;padding:3rem;text-align:center;color:var(--mid-gray);">
+      <span style="font-family:'Barlow Condensed',sans-serif;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;">Loading stories...</span>
     </div>
   </div>
 
   <hr class="divider" />
 
   <!-- THREE COLUMN CARDS -->
-  <div class="section-label">Latest Reports</div>
-  <div class="three-col">
-
-    <div class="card">
-      <div class="card-img-wrap">
-        <div class="card-placeholder ph-teal" style="height:100%;margin:0;"></div>
-      </div>
-      <div class="card-kicker">Community</div>
-      <h3 class="card-headline"><a href="#">Jonesboro Parks Department Unveils Summer Program Lineup</a></h3>
-      <p class="card-excerpt">From youth sports leagues to free outdoor concerts, the city is rolling out an expanded schedule of community events for the warmer months.</p>
-      <a href="#" class="read-more">Read More →</a>
-    </div>
-
-    <div class="card">
-      <div class="card-img-wrap">
-        <div class="card-placeholder ph-mid" style="height:100%;margin:0;"></div>
-      </div>
-      <div class="card-kicker">Business</div>
-      <h3 class="card-headline"><a href="#">Farm Bureau Reports Mixed Outlook for Northeast Arkansas Growers</a></h3>
-      <p class="card-excerpt">Soybean and rice farmers are cautiously optimistic heading into planting season, but rising input costs remain a concern across the region.</p>
-      <a href="#" class="read-more">Read More →</a>
-    </div>
-
-    <div class="card">
-      <div class="card-img-wrap">
-        <div class="card-placeholder ph-crimson" style="height:100%;margin:0;"></div>
-      </div>
-      <div class="card-kicker">Local</div>
-      <h3 class="card-headline"><a href="#">Historic Walnut Ridge Depot Restoration Gets State Funding Boost</a></h3>
-      <p class="card-excerpt">A $1.2 million preservation grant will fund roof repairs and structural work on one of the region's last remaining original rail depots.</p>
-      <a href="#" class="read-more">Read More →</a>
-    </div>
-
-  </div>
+  <div id="latest-label" class="section-label" style="display:none;">Latest Reports</div>
+  <div class="three-col" id="stories-grid"></div>
 
   <!-- FEATURE STRIP -->
   <div class="feature-strip">
@@ -737,34 +643,11 @@
     </div>
   </div>
 
-  <hr class="divider" />
+  <hr class="divider" id="more-divider" style="display:none;" />
 
   <!-- SECOND ROW CARDS -->
-  <div class="section-label">More Stories</div>
-  <div class="three-col">
-
-    <div class="card">
-      <div class="card-kicker">Opinion</div>
-      <h3 class="card-headline"><a href="#">Northeast Arkansas Deserves Better Than Part-Time Accountability</a></h3>
-      <p class="card-excerpt">Grendel Levy on why local government transparency isn't optional, and what residents can do to demand better from their elected officials.</p>
-      <span class="byline" style="margin-top:.5rem;display:block;">By <strong>Grendel Levy</strong></span>
-    </div>
-
-    <div class="card">
-      <div class="card-kicker">Education</div>
-      <h3 class="card-headline"><a href="#">Nettleton School District Adds Mental Health Counselors</a></h3>
-      <p class="card-excerpt">The district is expanding student support services with three new full-time counselors, funded through a federal grant secured last fall.</p>
-      <span class="byline" style="margin-top:.5rem;display:block;">March 22, 2026</span>
-    </div>
-
-    <div class="card">
-      <div class="card-kicker">Local</div>
-      <h3 class="card-headline"><a href="#">Flooding Risk Prompts New Study of St. Francis River Levees</a></h3>
-      <p class="card-excerpt">Army Corps of Engineers officials say an engineering assessment of aging levee infrastructure along the St. Francis is overdue and now underway.</p>
-      <span class="byline" style="margin-top:.5rem;display:block;">March 21, 2026</span>
-    </div>
-
-  </div>
+  <div id="more-label" class="section-label" style="display:none;">More Stories</div>
+  <div class="three-col" id="stories-grid-2"></div>
 
 </div>
 
@@ -778,22 +661,21 @@
     <div class="footer-col">
       <h4>Sections</h4>
       <ul>
-        <li><a href="#">National</a></li>
-        <li><a href="#">Politics</a></li>
-        <li><a href="#">World</a></li>
-        <li><a href="#">Business</a></li>
-        <li><a href="#">Technology</a></li>
-        <li><a href="#">Health</a></li>
-        <li><a href="#">Opinion</a></li>
+        <li><a href="category.html?cat=Local">Local</a></li>
+        <li><a href="category.html?cat=Politics">Politics</a></li>
+        <li><a href="category.html?cat=Investigations">Investigations</a></li>
+        <li><a href="category.html?cat=Education">Education</a></li>
+        <li><a href="category.html?cat=Business">Business</a></li>
+        <li><a href="category.html?cat=Community">Community</a></li>
+        <li><a href="category.html?cat=Opinion">Opinion</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Investigations</h4>
+      <h4>Newsroom</h4>
       <ul>
         <li><a href="#">Latest Reports</a></li>
-        <li><a href="#">Archive</a></li>
-        <li><a href="#">Data &amp; Documents</a></li>
-        <li><a href="#">Submit a Tip</a></li>
+        <li><a href="tips.html">Submit a Tip</a></li>
+        <li><a href="#">Newsletter</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -803,7 +685,6 @@
         <li><a href="tips.html">Contact</a></li>
         <li><a href="privacy.html">Privacy Policy</a></li>
         <li><a href="terms.html">Terms of Use</a></li>
-        <li><a href="#">Newsletter</a></li>
       </ul>
     </div>
   </div>
@@ -814,9 +695,141 @@
 </footer>
 
 <script>
-  // Date in top bar
-  const d = new Date();
-  document.getElementById('current-date').textContent = d.toLocaleDateString('en-US', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+  const SPACE_ID = 'tu2fyw49pjxi';
+  const ACCESS_TOKEN = 'zNETtxUJBYzxrAOHOqSF025JpPPL3ks8QJk_zSoR7qI';
+
+  function formatDate(str) {
+    if (!str) return '';
+    return new Date(str).toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'});
+  }
+
+  function getImgUrl(link, assets) {
+    if (!link) return null;
+    const id = link.sys && link.sys.id;
+    const a = assets.find(x => x.sys.id === id);
+    return a ? 'https:' + a.fields.file.url : null;
+  }
+
+  function storyUrl(slug) { return `story.html?slug=${encodeURIComponent(slug)}`; }
+  function catUrl(cat) { return `category.html?cat=${encodeURIComponent(cat)}`; }
+
+  function firstCat(cats) { return (cats && cats.length) ? cats[0] : 'Local'; }
+
+  function heroMainHTML(s, assets) {
+    const f = s.fields;
+    const img = getImgUrl(f.heroImage, assets);
+    return `
+      <div class="hero-main">
+        ${img ? `<img class="hero-main-img" src="${img}" alt="${f.headline}" />`
+               : `<div class="hero-placeholder-img ph-navy"><svg width="80" height="80" viewBox="0 0 80 80" fill="white"><rect x="8" y="20" width="64" height="8" rx="2"/><rect x="8" y="36" width="48" height="6" rx="2"/><rect x="8" y="50" width="56" height="6" rx="2"/><rect x="8" y="64" width="40" height="6" rx="2"/></svg></div>`}
+        <div class="hero-main-body">
+          <span class="hero-kicker">${firstCat(f.category)}</span>
+          <h1 class="hero-headline"><a href="${storyUrl(f.slug)}">${f.headline}</a></h1>
+          <p class="hero-dek">${f.summary || ''}</p>
+          <span class="byline">By <strong>Grendel Levy</strong> &nbsp;·&nbsp; ${formatDate(f.publishDate)}</span>
+        </div>
+      </div>`;
+  }
+
+  function heroSecHTML(s, assets) {
+    const f = s.fields;
+    const img = getImgUrl(f.heroImage, assets);
+    return `
+      <div class="hero-sec">
+        ${img ? `<img class="hero-sec-img" src="${img}" alt="${f.headline}" />`
+               : `<div class="hero-sec-placeholder ph-crimson"></div>`}
+        <span class="hero-kicker">${firstCat(f.category)}</span>
+        <h2 class="story-headline"><a href="${storyUrl(f.slug)}">${f.headline}</a></h2>
+        <p class="story-dek">${f.summary || ''}</p>
+        <div class="byline" style="margin-top:.5rem;">${formatDate(f.publishDate)}</div>
+      </div>`;
+  }
+
+  function sidebarHTML(stories) {
+    return `<div class="section-label" style="margin-bottom:.75rem;">Most Read</div>` +
+      stories.map((s, i) => `
+        <div class="sidebar-story">
+          <div class="sidebar-num">${String(i+1).padStart(2,'0')}</div>
+          <div class="sidebar-hl"><a href="${storyUrl(s.fields.slug)}">${s.fields.headline}</a></div>
+          <div class="sidebar-meta">${firstCat(s.fields.category)} · ${formatDate(s.fields.publishDate)}</div>
+        </div>`).join('');
+  }
+
+  function cardHTML(s, assets) {
+    const f = s.fields;
+    const img = getImgUrl(f.heroImage, assets);
+    return `
+      <div class="card">
+        <div class="card-img-wrap">
+          ${img ? `<img src="${img}" alt="${f.headline}" style="width:100%;height:100%;object-fit:cover;" />`
+                : `<div class="card-placeholder ph-navy" style="height:100%;margin:0;"></div>`}
+        </div>
+        <div class="card-kicker">${firstCat(f.category)}</div>
+        <h3 class="card-headline"><a href="${storyUrl(f.slug)}">${f.headline}</a></h3>
+        <p class="card-excerpt">${f.summary || ''}</p>
+        <a href="${storyUrl(f.slug)}" class="read-more">Read More →</a>
+      </div>`;
+  }
+
+  async function init() {
+    document.getElementById('current-date').textContent =
+      new Date().toLocaleDateString('en-US', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+
+    try {
+      const res = await fetch(
+        `https://cdn.contentful.com/spaces/${SPACE_ID}/entries?content_type=story&order=-fields.publishDate&include=1&limit=20&access_token=${ACCESS_TOKEN}`
+      );
+      const data = await res.json();
+      const stories = data.items || [];
+      const assets = (data.includes && data.includes.Asset) || [];
+
+      if (stories.length === 0) {
+        document.getElementById('hero-grid').innerHTML = `
+          <div style="grid-column:1/-1;padding:4rem 2rem;text-align:center;color:var(--mid-gray);">
+            <p style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:0.5rem;color:var(--text-light);">Stories Coming Soon</p>
+            <p style="font-family:'Barlow Condensed',sans-serif;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;">Check back shortly for the latest news from Northeast Arkansas.</p>
+          </div>`;
+        return;
+      }
+
+      // Build hero grid
+      let grid = heroMainHTML(stories[0], assets);
+      if (stories[1]) grid += heroSecHTML(stories[1], assets);
+      if (stories[2]) grid += heroSecHTML(stories[2], assets);
+      const sideStories = stories.slice(stories.length >= 4 ? 3 : 1, 8);
+      grid += `<div class="hero-sidebar">${sidebarHTML(sideStories)}</div>`;
+      document.getElementById('hero-grid').innerHTML = grid;
+
+      // Cards row 1 (stories 3-5)
+      const row1 = stories.slice(3, 6);
+      if (row1.length) {
+        document.getElementById('latest-label').style.display = '';
+        document.getElementById('stories-grid').innerHTML = row1.map(s => cardHTML(s, assets)).join('');
+      }
+
+      // Cards row 2 (stories 6-8)
+      const row2 = stories.slice(6, 9);
+      if (row2.length) {
+        document.getElementById('more-divider').style.display = '';
+        document.getElementById('more-label').style.display = '';
+        document.getElementById('stories-grid-2').innerHTML = row2.map(s => cardHTML(s, assets)).join('');
+      }
+
+      // Update ticker with real headlines
+      const tickerStories = [...stories.slice(0,4), ...stories.slice(0,4)];
+      document.querySelector('.ticker-content').innerHTML =
+        tickerStories.map(s => `<span>${s.fields.headline}</span>`).join('');
+
+    } catch(err) {
+      console.error('Contentful error:', err);
+      document.getElementById('hero-grid').innerHTML = `
+        <div style="grid-column:1/-1;padding:3rem;text-align:center;color:var(--mid-gray);">
+          <p>Unable to load stories. Please try again shortly.</p>
+        </div>`;
+    }
+  }
+
+  init();
 </script>
 
 </body>
