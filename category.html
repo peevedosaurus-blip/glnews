@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loading... — GLNewsReports</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --crimson: #8B0000; --crimson-dk: #5A0000; --crimson-lt: #A52020;
+      --navy: #0D1B2A; --offwhite: #F7F4EF; --warm-gray: #E8E4DE;
+      --mid-gray: #9A9188; --text: #1A1412; --text-light: #4A4540; --rule: #D4CFC8;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Source Serif 4', Georgia, serif; background: var(--offwhite); color: var(--text); line-height: 1.7; }
+    a { color: inherit; text-decoration: none; }
+
+    .topbar { background: var(--navy); color: #aab4bf; font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; display: flex; justify-content: space-between; align-items: center; padding: 6px 2rem; }
+    .topbar a { color: #aab4bf; transition: color .2s; }
+    .topbar a:hover { color: #fff; }
+    .topbar-right { display: flex; gap: 1.4rem; }
+
+    header { background: var(--navy); border-bottom: 3px solid var(--crimson); }
+    .header-inner { max-width: 1280px; margin: 0 auto; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .logo-wrap img { height: 80px; width: auto; display: block; transition: opacity .2s; }
+    .logo-wrap:hover img { opacity: .88; }
+    .tagline { color: #8fa3b5; font-family: 'Source Serif 4', serif; font-style: italic; font-size: 1.2rem; margin-top: 4px; }
+
+    nav { background: var(--crimson-dk); border-bottom: 1px solid rgba(255,255,255,.08); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,.35); }
+    .nav-inner { max-width: 1280px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; overflow-x: auto; }
+    nav a { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,.85); padding: 14px 18px; border-bottom: 3px solid transparent; transition: color .2s, border-color .2s, background .2s; display: block; white-space: nowrap; }
+    nav a:hover, nav a.active { color: #fff; border-bottom-color: #fff; background: rgba(255,255,255,.06); }
+
+    .page-hero { background: linear-gradient(135deg, var(--navy) 0%, var(--crimson-dk) 100%); padding: 3rem 2rem; border-bottom: 3px solid var(--crimson); }
+    .page-hero-inner { max-width: 1280px; margin: 0 auto; }
+    .page-hero .eyebrow { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 0.5rem; }
+    .page-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 900; color: #fff; line-height: 1.15; }
+
+    .main-content { max-width: 1280px; margin: 0 auto; padding: 2.5rem 2rem; }
+
+    .section-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--crimson); border-bottom: 2px solid var(--crimson); padding-bottom: 6px; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 8px; }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); margin-left: 6px; }
+
+    /* LEAD STORY (first in category) */
+    .lead-story { display: grid; grid-template-columns: 1fr 1fr; gap: 0; background: #fff; border: 1px solid var(--rule); margin-bottom: 2.5rem; }
+    .lead-img { overflow: hidden; }
+    .lead-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s; }
+    .lead-img:hover img { transform: scale(1.03); }
+    .lead-img-placeholder { width: 100%; height: 100%; min-height: 280px; background: linear-gradient(135deg, var(--navy), var(--crimson-dk)); }
+    .lead-body { padding: 2rem; display: flex; flex-direction: column; justify-content: center; }
+    .lead-kicker { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--crimson); margin-bottom: 0.75rem; display: block; }
+    .lead-headline { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900; line-height: 1.2; margin-bottom: 0.75rem; color: var(--text); }
+    .lead-headline a:hover { color: var(--crimson); }
+    .lead-dek { font-size: 0.97rem; color: var(--text-light); line-height: 1.65; margin-bottom: 1rem; }
+    .byline { font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; letter-spacing: 0.06em; color: var(--mid-gray); text-transform: uppercase; }
+    .byline strong { color: var(--text-light); }
+
+    /* STORY GRID */
+    .story-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 2.5rem; }
+    .card { border-top: 3px solid var(--crimson); padding-top: 1rem; }
+    .card-img-wrap { width: 100%; height: 180px; overflow: hidden; margin-bottom: 0.85rem; }
+    .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+    .card:hover .card-img-wrap img { transform: scale(1.03); }
+    .card-placeholder { width: 100%; height: 180px; margin-bottom: 0.85rem; background: linear-gradient(135deg, var(--navy), #1d3550); }
+    .card-kicker { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--crimson); margin-bottom: 0.4rem; }
+    .card-headline { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; line-height: 1.28; margin-bottom: 0.5rem; color: var(--text); }
+    .card-headline a:hover { color: var(--crimson); }
+    .card-excerpt { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; margin-bottom: 0.75rem; }
+    .read-more { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--crimson); border-bottom: 1px solid var(--crimson); padding-bottom: 1px; transition: opacity .2s; }
+    .read-more:hover { opacity: .7; }
+
+    .empty-state { padding: 4rem 2rem; text-align: center; color: var(--mid-gray); }
+    .empty-state h2 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--text-light); margin-bottom: 0.5rem; }
+    .empty-state p { font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; }
+
+    footer { background: var(--navy); color: #7a90a0; margin-top: 3rem; }
+    .footer-top { max-width: 1280px; margin: 0 auto; padding: 2.5rem 2rem; display: grid; grid-template-columns: 280px 1fr 1fr 1fr; gap: 2rem; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .footer-brand img { height: 65px; width: auto; margin-bottom: 1rem; }
+    .footer-brand p { font-size: .83rem; line-height: 1.65; color: #6b8090; }
+    .footer-col h4 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: #fff; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,.1); padding-bottom: .5rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: .55rem; }
+    .footer-col ul a { font-size: .83rem; color: #6b8090; transition: color .2s; }
+    .footer-col ul a:hover { color: #fff; }
+    .footer-bottom { max-width: 1280px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; font-family: 'Barlow Condensed', sans-serif; font-size: .7rem; letter-spacing: .06em; color: #4a6070; }
+
+    @media (max-width: 900px) {
+      .lead-story { grid-template-columns: 1fr; }
+      .story-grid { grid-template-columns: 1fr 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .topbar { display: none; }
+      .header-inner { flex-direction: column; text-align: center; padding: 1rem; }
+      .story-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <span id="current-date"></span>
+  <div class="topbar-right">
+    <a href="about.html">About</a>
+    <a href="tips.html">Submit a Tip</a>
+    <a href="#">Newsletter</a>
+  </div>
+</div>
+
+<header>
+  <div class="header-inner">
+    <a class="logo-wrap" href="index.html">
+      <img src="https://res.cloudinary.com/duvikni5b/image/upload/v1774455543/GLnews_-_Lettering_Only_cxzui4.png" alt="GL News Reports" />
+    </a>
+    <p class="tagline">Stories That Matter. Bringing you the latest news with honesty and insight every day.</p>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-inner" id="main-nav">
+    <a href="index.html">Home</a>
+    <a href="category.html?cat=Local" data-cat="Local">Local</a>
+    <a href="category.html?cat=Politics" data-cat="Politics">Politics</a>
+    <a href="category.html?cat=Investigations" data-cat="Investigations">Investigations</a>
+    <a href="category.html?cat=Education" data-cat="Education">Education</a>
+    <a href="category.html?cat=Business" data-cat="Business">Business</a>
+    <a href="category.html?cat=Community" data-cat="Community">Community</a>
+    <a href="category.html?cat=Opinion" data-cat="Opinion">Opinion</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="eyebrow">Section</div>
+    <h1 id="page-title">Loading...</h1>
+  </div>
+</div>
+
+<div class="main-content" id="main-content">
+  <div class="empty-state">
+    <p>Loading stories...</p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="https://res.cloudinary.com/duvikni5b/image/upload/v1774455543/GLnews_-_Lettering_Only_cxzui4.png" alt="GL News Reports" />
+      <p>Bringing you the latest news with honesty and insight. Committed to honest stories, uncovering issues, and sharing real solutions.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Sections</h4>
+      <ul>
+        <li><a href="category.html?cat=Local">Local</a></li>
+        <li><a href="category.html?cat=Politics">Politics</a></li>
+        <li><a href="category.html?cat=Investigations">Investigations</a></li>
+        <li><a href="category.html?cat=Education">Education</a></li>
+        <li><a href="category.html?cat=Business">Business</a></li>
+        <li><a href="category.html?cat=Community">Community</a></li>
+        <li><a href="category.html?cat=Opinion">Opinion</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Newsroom</h4>
+      <ul>
+        <li><a href="#">Latest Reports</a></li>
+        <li><a href="tips.html">Submit a Tip</a></li>
+        <li><a href="#">Newsletter</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="tips.html">Contact</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Use</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 GLNewsReports · <a href="https://glnewsreports.com" style="color:inherit;">glnewsreports.com</a></span>
+    <span>Journalism with integrity · All rights reserved</span>
+  </div>
+</footer>
+
+<script>
+  const SPACE_ID = 'tu2fyw49pjxi';
+  const ACCESS_TOKEN = 'zNETtxUJBYzxrAOHOqSF025JpPPL3ks8QJk_zSoR7qI';
+
+  document.getElementById('current-date').textContent =
+    new Date().toLocaleDateString('en-US', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+
+  function formatDate(str) {
+    if (!str) return '';
+    return new Date(str).toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'});
+  }
+
+  function getImgUrl(link, assets) {
+    if (!link) return null;
+    const id = link.sys && link.sys.id;
+    const a = assets.find(x => x.sys.id === id);
+    return a ? 'https:' + a.fields.file.url : null;
+  }
+
+  function storyUrl(slug) { return `story.html?slug=${encodeURIComponent(slug)}`; }
+
+  function cardHTML(s, assets) {
+    const f = s.fields;
+    const img = getImgUrl(f.heroImage, assets);
+    const cat = (f.category && f.category[0]) || '';
+    return `
+      <div class="card">
+        <div class="card-img-wrap">
+          ${img
+            ? `<img src="${img}" alt="${f.headline}" />`
+            : `<div class="card-placeholder"></div>`}
+        </div>
+        <div class="card-kicker">${cat}</div>
+        <h3 class="card-headline"><a href="${storyUrl(f.slug)}">${f.headline}</a></h3>
+        <p class="card-excerpt">${f.summary || ''}</p>
+        <a href="${storyUrl(f.slug)}" class="read-more">Read More →</a>
+      </div>`;
+  }
+
+  async function init() {
+    const params = new URLSearchParams(window.location.search);
+    const cat = params.get('cat') || '';
+
+    // Update page title and nav active state
+    document.title = `${cat} — GLNewsReports`;
+    document.getElementById('page-title').textContent = cat;
+    document.querySelectorAll('#main-nav a[data-cat]').forEach(a => {
+      if (a.dataset.cat === cat) a.classList.add('active');
+    });
+
+    try {
+      const res = await fetch(
+        `https://cdn.contentful.com/spaces/${SPACE_ID}/entries?content_type=story&fields.category[in]=${encodeURIComponent(cat)}&order=-fields.publishDate&include=1&limit=20&access_token=${ACCESS_TOKEN}`
+      );
+      const data = await res.json();
+      const stories = data.items || [];
+      const assets = (data.includes && data.includes.Asset) || [];
+      const main = document.getElementById('main-content');
+
+      if (stories.length === 0) {
+        main.innerHTML = `
+          <div class="empty-state">
+            <h2>No Stories Yet</h2>
+            <p>Check back soon for the latest ${cat} coverage.</p>
+          </div>`;
+        return;
+      }
+
+      let html = '';
+
+      // Lead story
+      const lead = stories[0];
+      const lf = lead.fields;
+      const leadImg = getImgUrl(lf.heroImage, assets);
+      html += `
+        <div class="section-label">Latest in ${cat}</div>
+        <div class="lead-story">
+          <div class="lead-img">
+            ${leadImg
+              ? `<img src="${leadImg}" alt="${lf.headline}" />`
+              : `<div class="lead-img-placeholder"></div>`}
+          </div>
+          <div class="lead-body">
+            <span class="lead-kicker">${cat}</span>
+            <h2 class="lead-headline"><a href="${storyUrl(lf.slug)}">${lf.headline}</a></h2>
+            <p class="lead-dek">${lf.summary || ''}</p>
+            <span class="byline">By <strong>Grendel Levy</strong> &nbsp;·&nbsp; ${formatDate(lf.publishDate)}</span>
+          </div>
+        </div>`;
+
+      // Remaining stories as cards
+      const rest = stories.slice(1);
+      if (rest.length > 0) {
+        html += `<div class="section-label">More ${cat} Stories</div>`;
+        html += `<div class="story-grid">${rest.map(s => cardHTML(s, assets)).join('')}</div>`;
+      }
+
+      main.innerHTML = html;
+
+    } catch(err) {
+      console.error(err);
+      document.getElementById('main-content').innerHTML = `
+        <div class="empty-state">
+          <h2>Unable to Load Stories</h2>
+          <p>Please try again shortly.</p>
+        </div>`;
+    }
+  }
+
+  init();
+</script>
+</body>
+</html>
