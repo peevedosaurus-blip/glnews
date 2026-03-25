@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Use — GLNewsReports</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --crimson: #8B0000; --crimson-dk: #5A0000; --crimson-lt: #A52020;
+      --navy: #0D1B2A; --offwhite: #F7F4EF; --warm-gray: #E8E4DE;
+      --mid-gray: #9A9188; --text: #1A1412; --text-light: #4A4540; --rule: #D4CFC8;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Source Serif 4', Georgia, serif; background: var(--offwhite); color: var(--text); line-height: 1.7; }
+    a { color: inherit; text-decoration: none; }
+
+    .topbar { background: var(--navy); color: #aab4bf; font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; display: flex; justify-content: space-between; align-items: center; padding: 6px 2rem; }
+    .topbar a { color: #aab4bf; transition: color .2s; }
+    .topbar a:hover { color: #fff; }
+    .topbar-right { display: flex; gap: 1.4rem; }
+
+    header { background: var(--navy); border-bottom: 3px solid var(--crimson); }
+    .header-inner { max-width: 1280px; margin: 0 auto; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .logo-wrap img { height: 80px; width: auto; display: block; transition: opacity .2s; }
+    .logo-wrap:hover img { opacity: .88; }
+    .tagline { color: #8fa3b5; font-family: 'Source Serif 4', serif; font-style: italic; font-size: 1.2rem; margin-top: 4px; }
+
+    nav { background: var(--crimson-dk); border-bottom: 1px solid rgba(255,255,255,.08); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,.35); }
+    .nav-inner { max-width: 1280px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; overflow-x: auto; }
+    nav a { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,.85); padding: 14px 18px; border-bottom: 3px solid transparent; transition: color .2s, border-color .2s, background .2s; display: block; white-space: nowrap; }
+    nav a:hover, nav a.active { color: #fff; border-bottom-color: #fff; background: rgba(255,255,255,.06); }
+
+    .page-hero { background: linear-gradient(135deg, var(--crimson-dk) 0%, var(--navy) 100%); padding: 3.5rem 2rem; text-align: center; position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, rgba(255,255,255,.015) 0px, rgba(255,255,255,.015) 1px, transparent 1px, transparent 40px); }
+    .page-hero-inner { position: relative; max-width: 760px; margin: 0 auto; }
+    .page-hero .eyebrow { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 1rem; }
+    .page-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 900; color: #fff; line-height: 1.15; margin-bottom: 0.75rem; }
+    .page-hero .updated { font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,.4); }
+
+    .main-content { max-width: 1280px; margin: 0 auto; padding: 3rem 2rem; display: grid; grid-template-columns: 1fr 260px; gap: 4rem; align-items: start; }
+
+    .policy-body h2 { font-family: 'Playfair Display', serif; font-size: 1.45rem; font-weight: 700; color: var(--text); margin: 2.5rem 0 0.75rem; padding-top: 2.5rem; border-top: 1px solid var(--rule); }
+    .policy-body h2:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+    .policy-body p { font-size: 0.97rem; color: var(--text-light); line-height: 1.8; margin-bottom: 1rem; }
+    .policy-body ul { margin: 0.5rem 0 1rem 1.5rem; }
+    .policy-body ul li { font-size: 0.97rem; color: var(--text-light); line-height: 1.75; margin-bottom: 0.4rem; }
+    .policy-body strong { color: var(--text); font-weight: 600; }
+
+    .toc { position: sticky; top: 70px; background: #fff; border: 1px solid var(--rule); border-top: 3px solid var(--crimson); padding: 1.5rem; }
+    .toc h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--crimson); margin-bottom: 1rem; }
+    .toc ol { list-style: none; counter-reset: toc-counter; }
+    .toc ol li { counter-increment: toc-counter; display: flex; align-items: baseline; gap: 0.5rem; padding: 0.4rem 0; border-bottom: 1px solid var(--rule); font-size: 0.82rem; }
+    .toc ol li:last-child { border-bottom: none; }
+    .toc ol li::before { content: counter(toc-counter, decimal-leading-zero); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; color: var(--crimson); font-size: 0.7rem; flex-shrink: 0; }
+    .toc ol li a { color: var(--text-light); transition: color .2s; line-height: 1.4; }
+    .toc ol li a:hover { color: var(--crimson); }
+
+    .contact-box { margin-top: 1.5rem; background: var(--navy); padding: 1.25rem; color: #fff; }
+    .contact-box h4 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.75rem; color: rgba(255,255,255,.6); }
+    .contact-box p { font-size: 0.82rem; color: #7a90a0; line-height: 1.6; margin-bottom: 0.75rem; }
+    .contact-box a.btn { display: block; background: var(--crimson); color: #fff; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 9px 16px; text-align: center; transition: background .2s; }
+    .contact-box a.btn:hover { background: var(--crimson-lt); }
+
+    footer { background: var(--navy); color: #7a90a0; margin-top: 3rem; }
+    .footer-top { max-width: 1280px; margin: 0 auto; padding: 2.5rem 2rem; display: grid; grid-template-columns: 280px 1fr 1fr 1fr; gap: 2rem; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .footer-brand img { height: 65px; width: auto; margin-bottom: 1rem; }
+    .footer-brand p { font-size: .83rem; line-height: 1.65; color: #6b8090; }
+    .footer-col h4 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: #fff; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,.1); padding-bottom: .5rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: .55rem; }
+    .footer-col ul a { font-size: .83rem; color: #6b8090; transition: color .2s; }
+    .footer-col ul a:hover { color: #fff; }
+    .footer-bottom { max-width: 1280px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; font-family: 'Barlow Condensed', sans-serif; font-size: .7rem; letter-spacing: .06em; color: #4a6070; }
+
+    @media (max-width: 900px) {
+      .main-content { grid-template-columns: 1fr; }
+      .toc { position: static; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .topbar { display: none; }
+      .header-inner { flex-direction: column; text-align: center; padding: 1rem; }
+      .page-hero h1 { font-size: 2rem; }
+      .footer-top { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <span id="current-date"></span>
+  <div class="topbar-right">
+    <a href="about.html">About</a>
+    <a href="tips.html">Submit a Tip</a>
+    <a href="#">Newsletter</a>
+  </div>
+</div>
+
+<header>
+  <div class="header-inner">
+    <a class="logo-wrap" href="index.html">
+      <img src="https://res.cloudinary.com/duvikni5b/image/upload/v1774455543/GLnews_-_Lettering_Only_cxzui4.png" alt="GL News Reports" />
+    </a>
+    <p class="tagline">Stories That Matter. Bringing you the latest news with honesty and insight every day.</p>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html">Home</a>
+    <a href="#">Local</a>
+    <a href="#">Politics</a>
+    <a href="#">Investigations</a>
+    <a href="#">Education</a>
+    <a href="#">Business</a>
+    <a href="#">Community</a>
+    <a href="#">Opinion</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="eyebrow">Legal</div>
+    <h1>Terms of Use</h1>
+    <div class="updated">Last updated: March 25, 2026</div>
+  </div>
+</div>
+
+<div class="main-content">
+
+  <div class="policy-body">
+
+    <h2 id="acceptance">Acceptance of Terms</h2>
+    <p>By accessing or using the GLNewsReports website at glnewsreports.com ("the Site"), you agree to be bound by these Terms of Use. These terms apply to all visitors, readers, and anyone who submits content or tips through the Site. If you do not agree with any part of these terms, please do not use this website.</p>
+    <p>GLNewsReports reserves the right to update or modify these Terms of Use at any time without prior notice. Your continued use of the Site following any changes constitutes acceptance of the revised terms.</p>
+
+    <h2 id="content">Content and Intellectual Property</h2>
+    <p>All content published on GLNewsReports, including articles, reports, photographs, graphics, video, logos, and site design, is the property of GLNewsReports and Grendel Levy unless otherwise indicated, and is protected by applicable copyright and intellectual property laws.</p>
+    <p>You may share links to our content and quote brief excerpts for non-commercial purposes, provided you clearly attribute the work to GLNewsReports and include a link back to the original article. You may not:</p>
+    <ul>
+      <li>Reproduce, republish, or redistribute our content in full without written permission</li>
+      <li>Use our content for commercial purposes without authorization</li>
+      <li>Remove or alter any copyright, trademark, or other proprietary notices from our content</li>
+      <li>Scrape, crawl, or automate data collection from the Site without our express written consent</li>
+    </ul>
+    <p>To request permission to republish or license content, please contact us through our <a href="tips.html" style="color:var(--crimson);border-bottom:1px solid var(--crimson);">contact page</a>.</p>
+
+    <h2 id="accuracy">Editorial Standards and Accuracy</h2>
+    <p>GLNewsReports is committed to accuracy and fairness in all reporting. We make every reasonable effort to verify information before publication. However, news reporting involves rapidly developing situations, and we cannot guarantee that all information on the Site is complete, current, or error-free at all times.</p>
+    <p>If you believe a story contains an error, we encourage you to contact us. Corrections are reviewed promptly and published transparently when warranted.</p>
+    <p>The opinions expressed in columns, editorials, and opinion pieces are those of the individual authors and do not necessarily represent the views of GLNewsReports as an organization.</p>
+
+    <h2 id="submissions">User Submissions and Tips</h2>
+    <p>When you submit a tip, comment, or other content to GLNewsReports, you grant us a non-exclusive, royalty-free license to use, review, and, at our discretion, publish that information in connection with our journalism. You represent that you have the right to submit the information and that doing so does not violate any law or the rights of any third party.</p>
+    <p>We reserve the right to decline, remove, or edit any submission at our discretion. Submission of a tip does not guarantee coverage or publication.</p>
+    <p>GLNewsReports treats tips and source communications with strict confidentiality, as detailed in our <a href="privacy.html" style="color:var(--crimson);border-bottom:1px solid var(--crimson);">Privacy Policy</a>.</p>
+
+    <h2 id="prohibited">Prohibited Conduct</h2>
+    <p>You agree not to use this Site to:</p>
+    <ul>
+      <li>Submit false, misleading, or defamatory information</li>
+      <li>Impersonate any person or entity or misrepresent your affiliation with any organization</li>
+      <li>Harass, threaten, or intimidate any individual, including journalists or staff</li>
+      <li>Attempt to gain unauthorized access to any portion of the Site or its systems</li>
+      <li>Introduce malware, viruses, or any other harmful code</li>
+      <li>Violate any applicable local, state, or federal law or regulation</li>
+    </ul>
+
+    <h2 id="links">Third-Party Links</h2>
+    <p>Our Site may contain links to third-party websites for reference or convenience. These links do not constitute an endorsement of those sites or their content. GLNewsReports is not responsible for the content, accuracy, or privacy practices of any third-party websites, and we encourage you to review their terms and policies before engaging with them.</p>
+
+    <h2 id="disclaimer">Disclaimers</h2>
+    <p>The content on this Site is provided for informational and journalistic purposes only. Nothing on this Site constitutes legal, financial, medical, or professional advice. GLNewsReports makes no warranties, express or implied, regarding the accuracy, completeness, or fitness for a particular purpose of any content on the Site.</p>
+    <p>The Site is provided on an "as is" basis. We do not guarantee uninterrupted or error-free access to the Site and are not liable for any disruptions, outages, or technical failures.</p>
+
+    <h2 id="liability">Limitation of Liability</h2>
+    <p>To the fullest extent permitted by applicable law, GLNewsReports and Grendel Levy shall not be liable for any direct, indirect, incidental, special, or consequential damages arising from your use of or inability to use this Site, even if we have been advised of the possibility of such damages. This includes, but is not limited to, damages for loss of data, revenue, goodwill, or other intangible losses.</p>
+
+    <h2 id="governing">Governing Law</h2>
+    <p>These Terms of Use shall be governed by and construed in accordance with the laws of the State of Arkansas, without regard to its conflict of law provisions. Any disputes arising under these terms shall be subject to the exclusive jurisdiction of the courts located in Craighead County, Arkansas.</p>
+
+    <h2 id="contact">Contact Us</h2>
+    <p>If you have questions about these Terms of Use, please reach out through our <a href="tips.html" style="color:var(--crimson);border-bottom:1px solid var(--crimson);">contact page</a> at glnewsreports.com.</p>
+
+  </div>
+
+  <!-- SIDEBAR TOC -->
+  <aside>
+    <div class="toc">
+      <h3>Contents</h3>
+      <ol>
+        <li><a href="#acceptance">Acceptance of Terms</a></li>
+        <li><a href="#content">Content and Intellectual Property</a></li>
+        <li><a href="#accuracy">Editorial Standards and Accuracy</a></li>
+        <li><a href="#submissions">User Submissions and Tips</a></li>
+        <li><a href="#prohibited">Prohibited Conduct</a></li>
+        <li><a href="#links">Third-Party Links</a></li>
+        <li><a href="#disclaimer">Disclaimers</a></li>
+        <li><a href="#liability">Limitation of Liability</a></li>
+        <li><a href="#governing">Governing Law</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ol>
+    </div>
+    <div class="contact-box">
+      <h4>Questions?</h4>
+      <p>If you have questions about these terms, please get in touch through our contact page.</p>
+      <a href="tips.html" class="btn">Contact Us</a>
+    </div>
+  </aside>
+
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="https://res.cloudinary.com/duvikni5b/image/upload/v1774455543/GLnews_-_Lettering_Only_cxzui4.png" alt="GL News Reports" />
+      <p>Bringing you the latest news with honesty and insight. Committed to honest stories, uncovering issues, and sharing real solutions.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Sections</h4>
+      <ul>
+        <li><a href="#">Local</a></li>
+        <li><a href="#">Politics</a></li>
+        <li><a href="#">Investigations</a></li>
+        <li><a href="#">Education</a></li>
+        <li><a href="#">Business</a></li>
+        <li><a href="#">Community</a></li>
+        <li><a href="#">Opinion</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Newsroom</h4>
+      <ul>
+        <li><a href="#">Latest Reports</a></li>
+        <li><a href="#">Archive</a></li>
+        <li><a href="tips.html">Submit a Tip</a></li>
+        <li><a href="#">Newsletter</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="tips.html">Contact</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Use</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 GLNewsReports · <a href="https://glnewsreports.com" style="color:inherit;">glnewsreports.com</a></span>
+    <span>Journalism with integrity · All rights reserved</span>
+  </div>
+</footer>
+
+<script>
+  const d = new Date();
+  document.getElementById('current-date').textContent = d.toLocaleDateString('en-US', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+</script>
+</body>
+</html>

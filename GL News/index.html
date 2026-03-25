@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GLNewsReports — Stories That Matter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --crimson:    #8B0000;
+      --crimson-dk: #5A0000;
+      --crimson-lt: #A52020;
+      --navy:       #0D1B2A;
+      --navy-lt:    #162336;
+      --offwhite:   #F7F4EF;
+      --warm-gray:  #E8E4DE;
+      --mid-gray:   #9A9188;
+      --text:       #1A1412;
+      --text-light: #4A4540;
+      --rule:       #D4CFC8;
+      --accent:     #C8102E;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Source Serif 4', Georgia, serif;
+      background: var(--offwhite);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.65;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      background: var(--navy);
+      color: #aab4bf;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 2rem;
+    }
+    .topbar a { color: #aab4bf; transition: color .2s; }
+    .topbar a:hover { color: #fff; }
+    .topbar-right { display: flex; gap: 1.4rem; }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--navy);
+      border-bottom: 3px solid var(--crimson);
+    }
+    .header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .logo-wrap img {
+      height: 80px;
+      width: auto;
+      display: block;
+      transition: opacity .2s;
+    }
+    .logo-wrap:hover img { opacity: .88; }
+
+    .tagline {
+      color: #8fa3b5;
+      font-family: 'Source Serif 4', serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      margin-top: 4px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--crimson-dk);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,.35);
+    }
+    .nav-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+    nav a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.85);
+      padding: 14px 18px;
+      border-bottom: 3px solid transparent;
+      transition: color .2s, border-color .2s, background .2s;
+      display: block;
+    }
+    nav a:hover, nav a.active {
+      color: #fff;
+      border-bottom-color: #fff;
+      background: rgba(255,255,255,.06);
+    }
+    .nav-search {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-search input {
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 4px;
+      color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      padding: 5px 10px;
+      outline: none;
+      width: 160px;
+      transition: background .2s, border-color .2s;
+    }
+    .nav-search input::placeholder { color: rgba(255,255,255,.45); }
+    .nav-search input:focus { background: rgba(255,255,255,.2); border-color: rgba(255,255,255,.4); }
+    .nav-search button {
+      background: none; border: none; cursor: pointer;
+      color: rgba(255,255,255,.7); font-size: 1rem; padding: 4px;
+      transition: color .2s;
+    }
+    .nav-search button:hover { color: #fff; }
+
+    /* ── BREAKING TICKER ── */
+    .ticker-bar {
+      background: var(--crimson);
+      color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .ticker-label {
+      background: var(--navy);
+      padding: 7px 14px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .ticker-track {
+      overflow: hidden;
+      flex: 1;
+      padding: 7px 0;
+    }
+    .ticker-content {
+      display: inline-block;
+      white-space: nowrap;
+      animation: ticker 32s linear infinite;
+    }
+    .ticker-content span { margin: 0 3rem; }
+    .ticker-content span::before { content: '◆'; margin-right: 0.8rem; font-size: 0.6rem; vertical-align: middle; opacity: .7; }
+    @keyframes ticker {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── MAIN LAYOUT ── */
+    .main-content {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    /* ── SECTION LABELS ── */
+    .section-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--crimson);
+      border-bottom: 2px solid var(--crimson);
+      padding-bottom: 6px;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+      margin-left: 6px;
+    }
+
+    /* ── HERO GRID ── */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 320px;
+      grid-template-rows: auto auto;
+      gap: 0;
+      border: 1px solid var(--rule);
+      margin-bottom: 2.5rem;
+      background: #fff;
+    }
+    .hero-main {
+      grid-column: 1;
+      grid-row: 1 / 3;
+      border-right: 1px solid var(--rule);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-main-img {
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
+      display: block;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--crimson-dk) 100%);
+    }
+    .hero-placeholder-img {
+      width: 100%;
+      height: 340px;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--crimson-dk) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-placeholder-img svg { opacity: .18; }
+    .hero-main-body { padding: 1.5rem; }
+    .hero-kicker {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--crimson);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .hero-headline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2rem;
+      font-weight: 900;
+      line-height: 1.18;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+    .hero-headline a:hover { color: var(--crimson); }
+    .hero-dek {
+      font-size: 1rem;
+      color: var(--text-light);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .byline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      color: var(--mid-gray);
+      text-transform: uppercase;
+    }
+    .byline strong { color: var(--text-light); }
+
+    /* Hero secondary */
+    .hero-sec {
+      border-bottom: 1px solid var(--rule);
+      border-right: 1px solid var(--rule);
+      padding: 1.25rem;
+    }
+    .hero-sec:last-of-type { border-bottom: none; }
+    .hero-sec-img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .hero-sec-placeholder {
+      width: 100%;
+      height: 160px;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .story-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.18rem;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 0.4rem;
+      color: var(--text);
+    }
+    .story-headline a:hover { color: var(--crimson); }
+    .story-dek {
+      font-size: 0.87rem;
+      color: var(--text-light);
+      line-height: 1.55;
+    }
+
+    /* Sidebar stories list */
+    .hero-sidebar {
+      grid-column: 3;
+      grid-row: 1 / 3;
+      background: var(--warm-gray);
+      padding: 1.25rem;
+    }
+    .sidebar-story {
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .sidebar-story:first-child { padding-top: 0; }
+    .sidebar-story:last-child { border-bottom: none; padding-bottom: 0; }
+    .sidebar-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: var(--crimson);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .sidebar-hl {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--text);
+    }
+    .sidebar-hl a:hover { color: var(--crimson); }
+    .sidebar-meta {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+      color: var(--mid-gray);
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* ── THREE COLUMN ── */
+    .three-col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+    }
+    .card {
+      border-top: 3px solid var(--crimson);
+      padding-top: 1rem;
+    }
+    .card-img-wrap {
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+      margin-bottom: 0.85rem;
+    }
+    .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+    .card:hover .card-img-wrap img { transform: scale(1.03); }
+    .card-placeholder {
+      width: 100%;
+      height: 180px;
+      margin-bottom: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card-kicker {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--crimson);
+      margin-bottom: 0.4rem;
+    }
+    .card-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.12rem;
+      font-weight: 700;
+      line-height: 1.28;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+    .card-headline a:hover { color: var(--crimson); }
+    .card-excerpt {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      line-height: 1.6;
+      margin-bottom: 0.75rem;
+    }
+    .read-more {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--crimson);
+      border-bottom: 1px solid var(--crimson);
+      padding-bottom: 1px;
+      transition: opacity .2s;
+    }
+    .read-more:hover { opacity: .7; }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      border-top: 2px solid var(--rule);
+      margin: 2rem 0;
+    }
+
+    /* ── OPINION / FEATURE STRIP ── */
+    .feature-strip {
+      background: var(--navy);
+      padding: 2rem;
+      margin-bottom: 2.5rem;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+    .feature-strip-logo { text-align: center; }
+    .feature-strip-logo img { height: 90px; width: auto; }
+    .feature-strip-text .label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--crimson-lt);
+      margin-bottom: 0.5rem;
+    }
+    .feature-strip-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.25;
+      margin-bottom: 0.75rem;
+    }
+    .feature-strip-text p {
+      font-size: 0.9rem;
+      color: #8fa3b5;
+      line-height: 1.65;
+      max-width: 640px;
+    }
+    .btn-primary {
+      display: inline-block;
+      margin-top: 1.1rem;
+      background: var(--crimson);
+      color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 10px 22px;
+      border-radius: 2px;
+      transition: background .2s;
+    }
+    .btn-primary:hover { background: var(--crimson-lt); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: #7a90a0;
+      margin-top: 3rem;
+    }
+    .footer-top {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem;
+      display: grid;
+      grid-template-columns: 280px 1fr 1fr 1fr;
+      gap: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .footer-brand img { height: 65px; width: auto; margin-bottom: 1rem; }
+    .footer-brand p { font-size: 0.83rem; line-height: 1.65; color: #6b8090; }
+    .footer-col h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      padding-bottom: 0.5rem;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.55rem; }
+    .footer-col ul a {
+      font-size: 0.83rem;
+      color: #6b8090;
+      transition: color .2s;
+    }
+    .footer-col ul a:hover { color: #fff; }
+    .footer-bottom {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      color: #4a6070;
+    }
+
+    /* ── PLACEHOLDER COLORS ── */
+    .ph-navy { background: linear-gradient(135deg, var(--navy), #1d3550); }
+    .ph-crimson { background: linear-gradient(135deg, var(--crimson-dk), #3d0000); }
+    .ph-warm { background: linear-gradient(135deg, #2a1a0a, #4a2a10); }
+    .ph-teal { background: linear-gradient(135deg, #0a2a2a, #0a3040); }
+    .ph-mid { background: linear-gradient(135deg, #1a2a1a, #1a3020); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .hero-grid { grid-template-columns: 1fr 1fr; }
+      .hero-sidebar { grid-column: 1 / 3; grid-row: 3; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; background: var(--warm-gray); }
+      .sidebar-story { border-bottom: none; padding: 0; border-right: 1px solid var(--rule); }
+      .sidebar-story:last-child { border-right: none; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .topbar { display: none; }
+      .header-inner { flex-direction: column; text-align: center; padding: 1rem; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-main { grid-column: 1; grid-row: auto; border-right: none; border-bottom: 1px solid var(--rule); }
+      .hero-sec { border-right: none; }
+      .hero-sidebar { grid-column: 1; grid-row: auto; grid-template-columns: 1fr; }
+      .sidebar-story { border-right: none; border-bottom: 1px solid var(--rule); padding: 0.75rem 0; }
+      .three-col { grid-template-columns: 1fr; }
+      .feature-strip { grid-template-columns: 1fr; text-align: center; }
+      .feature-strip-logo { display: none; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .nav-inner { overflow-x: auto; }
+      .nav-search { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <span id="current-date"></span>
+  <div class="topbar-right">
+    <a href="about.html">About</a>
+    <a href="tips.html">Submit a Tip</a>
+    <a href="#">Newsletter</a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a class="logo-wrap" href="index.html">
+      <img src="https://res.cloudinary.com/duvikni5b/image/upload/v1774455543/GLnews_-_Lettering_Only_cxzui4.png" alt="GL News Reports" />
+    </a>
+    <p class="tagline">Stories That Matter. Bringing you the latest news with honesty and insight every day.</p>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="active">Home</a>
+    <a href="#">Local</a>
+    <a href="#">Politics</a>
+    <a href="#">Investigations</a>
+    <a href="#">Education</a>
+    <a href="#">Business</a>
+    <a href="#">Community</a>
+    <a href="#">Opinion</a>
+    <div class="nav-search">
+      <input type="text" placeholder="Search stories…" />
+      <button aria-label="Search">&#128269;</button>
+    </div>
+  </div>
+</nav>
+
+<!-- BREAKING TICKER -->
+<div class="ticker-bar">
+  <div class="ticker-label">BREAKING</div>
+  <div class="ticker-track">
+    <div class="ticker-content">
+      <span>Jonesboro City Council meeting tonight: agenda includes downtown development vote</span>
+      <span>Arkansas State University enrollment figures released for spring semester</span>
+      <span>Craighead County road closures following overnight storms</span>
+      <span>Local business spotlight: New restaurant opens on Main Street in Paragould</span>
+      <span>Jonesboro City Council meeting tonight: agenda includes downtown development vote</span>
+      <span>Arkansas State University enrollment figures released for spring semester</span>
+      <span>Craighead County road closures following overnight storms</span>
+      <span>Local business spotlight: New restaurant opens on Main Street in Paragould</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main-content">
+
+  <!-- HERO GRID -->
+  <div class="section-label">Top Stories</div>
+  <div class="hero-grid">
+
+    <!-- MAIN STORY -->
+    <div class="hero-main">
+      <div class="hero-placeholder-img ph-navy">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="white"><rect x="8" y="20" width="64" height="8" rx="2"/><rect x="8" y="36" width="48" height="6" rx="2"/><rect x="8" y="50" width="56" height="6" rx="2"/><rect x="8" y="64" width="40" height="6" rx="2"/></svg>
+      </div>
+      <div class="hero-main-body">
+        <span class="hero-kicker">Investigations</span>
+        <h1 class="hero-headline"><a href="#">Questions Surround Craighead County Road Contract Awards</a></h1>
+        <p class="hero-dek">A GLNewsReports investigation into county road projects finds a pattern of contracts awarded to the same handful of vendors, raising questions about whether competitive bidding rules are being followed.</p>
+        <span class="byline">By <strong>Grendel Levy</strong> &nbsp;·&nbsp; March 25, 2026</span>
+      </div>
+    </div>
+
+    <!-- SECONDARY STORIES -->
+    <div class="hero-sec">
+      <div class="hero-sec-placeholder ph-crimson">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="white" opacity=".2"><circle cx="24" cy="18" r="10"/><path d="M8 42c0-8.8 7.2-16 16-16s16 7.2 16 16"/></svg>
+      </div>
+      <span class="hero-kicker">Politics</span>
+      <h2 class="story-headline"><a href="#">Jonesboro Mayor Proposes New Downtown Revitalization Plan</a></h2>
+      <p class="story-dek">The proposal would bring new streetscaping, small business incentives, and a redesigned parking structure to central Jonesboro.</p>
+      <div class="byline" style="margin-top:.5rem;">March 24, 2026</div>
+    </div>
+
+    <div class="hero-sec">
+      <div class="hero-sec-placeholder ph-warm">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="white" opacity=".2"><rect x="6" y="10" width="36" height="28" rx="3"/><path d="M16 10V6M32 10V6M6 18h36"/></svg>
+      </div>
+      <span class="hero-kicker">Education</span>
+      <h2 class="story-headline"><a href="#">ASU to Open New Engineering Building This Fall</a></h2>
+      <p class="story-dek">Arkansas State University's long-awaited engineering facility is set to welcome students in August, adding capacity for hundreds of additional enrollments.</p>
+      <div class="byline" style="margin-top:.5rem;">March 23, 2026</div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="hero-sidebar">
+      <div class="section-label" style="margin-bottom:.75rem;">Most Read</div>
+
+      <div class="sidebar-story">
+        <div class="sidebar-num">01</div>
+        <div class="sidebar-hl"><a href="#">Greene County School Board Faces Rezoning Backlash</a></div>
+        <div class="sidebar-meta">Education · 2h ago</div>
+      </div>
+      <div class="sidebar-story">
+        <div class="sidebar-num">02</div>
+        <div class="sidebar-hl"><a href="#">New Manufacturing Plant to Bring 200 Jobs to Paragould</a></div>
+        <div class="sidebar-meta">Business · 4h ago</div>
+      </div>
+      <div class="sidebar-story">
+        <div class="sidebar-num">03</div>
+        <div class="sidebar-hl"><a href="#">Storm Damage Assessments Underway in Mississippi County</a></div>
+        <div class="sidebar-meta">Local · 6h ago</div>
+      </div>
+      <div class="sidebar-story">
+        <div class="sidebar-num">04</div>
+        <div class="sidebar-hl"><a href="#">Trumann Water System Repairs Enter Second Week</a></div>
+        <div class="sidebar-meta">Community · 8h ago</div>
+      </div>
+      <div class="sidebar-story">
+        <div class="sidebar-num">05</div>
+        <div class="sidebar-hl"><a href="#">NEA Regional Airport Eyes Expanded Service Routes</a></div>
+        <div class="sidebar-meta">Business · 10h ago</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- THREE COLUMN CARDS -->
+  <div class="section-label">Latest Reports</div>
+  <div class="three-col">
+
+    <div class="card">
+      <div class="card-img-wrap">
+        <div class="card-placeholder ph-teal" style="height:100%;margin:0;"></div>
+      </div>
+      <div class="card-kicker">Community</div>
+      <h3 class="card-headline"><a href="#">Jonesboro Parks Department Unveils Summer Program Lineup</a></h3>
+      <p class="card-excerpt">From youth sports leagues to free outdoor concerts, the city is rolling out an expanded schedule of community events for the warmer months.</p>
+      <a href="#" class="read-more">Read More →</a>
+    </div>
+
+    <div class="card">
+      <div class="card-img-wrap">
+        <div class="card-placeholder ph-mid" style="height:100%;margin:0;"></div>
+      </div>
+      <div class="card-kicker">Business</div>
+      <h3 class="card-headline"><a href="#">Farm Bureau Reports Mixed Outlook for Northeast Arkansas Growers</a></h3>
+      <p class="card-excerpt">Soybean and rice farmers are cautiously optimistic heading into planting season, but rising input costs remain a concern across the region.</p>
+      <a href="#" class="read-more">Read More →</a>
+    </div>
+
+    <div class="card">
+      <div class="card-img-wrap">
+        <div class="card-placeholder ph-crimson" style="height:100%;margin:0;"></div>
+      </div>
+      <div class="card-kicker">Local</div>
+      <h3 class="card-headline"><a href="#">Historic Walnut Ridge Depot Restoration Gets State Funding Boost</a></h3>
+      <p class="card-excerpt">A $1.2 million preservation grant will fund roof repairs and structural work on one of the region's last remaining original rail depots.</p>
+      <a href="#" class="read-more">Read More →</a>
+    </div>
+
+  </div>
+
+  <!-- FEATURE STRIP -->
+  <div class="feature-strip">
+    <div class="feature-strip-logo">
+      <img src="https://res.cloudinary.com/duvikni5b/image/upload/v1774455586/GLnews_ygcvca.png" alt="GL News Reports" />
+    </div>
+    <div class="feature-strip-text">
+      <div class="label">From Our Newsroom</div>
+      <h2>Have a Story Tip? We Want to Hear From You.</h2>
+      <p>Journalism depends on people willing to speak up. If you've witnessed wrongdoing, have documents to share, or know of a story that needs to be told, our reporters are ready to listen. All tips are handled with strict confidentiality.</p>
+      <a href="tips.html" class="btn-primary">Submit a Tip</a>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- SECOND ROW CARDS -->
+  <div class="section-label">More Stories</div>
+  <div class="three-col">
+
+    <div class="card">
+      <div class="card-kicker">Opinion</div>
+      <h3 class="card-headline"><a href="#">Northeast Arkansas Deserves Better Than Part-Time Accountability</a></h3>
+      <p class="card-excerpt">Grendel Levy on why local government transparency isn't optional, and what residents can do to demand better from their elected officials.</p>
+      <span class="byline" style="margin-top:.5rem;display:block;">By <strong>Grendel Levy</strong></span>
+    </div>
+
+    <div class="card">
+      <div class="card-kicker">Education</div>
+      <h3 class="card-headline"><a href="#">Nettleton School District Adds Mental Health Counselors</a></h3>
+      <p class="card-excerpt">The district is expanding student support services with three new full-time counselors, funded through a federal grant secured last fall.</p>
+      <span class="byline" style="margin-top:.5rem;display:block;">March 22, 2026</span>
+    </div>
+
+    <div class="card">
+      <div class="card-kicker">Local</div>
+      <h3 class="card-headline"><a href="#">Flooding Risk Prompts New Study of St. Francis River Levees</a></h3>
+      <p class="card-excerpt">Army Corps of Engineers officials say an engineering assessment of aging levee infrastructure along the St. Francis is overdue and now underway.</p>
+      <span class="byline" style="margin-top:.5rem;display:block;">March 21, 2026</span>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="https://res.cloudinary.com/duvikni5b/image/upload/v1774455543/GLnews_-_Lettering_Only_cxzui4.png" alt="GL News Reports" />
+      <p>Bringing you the latest news with honesty and insight. Committed to honest stories, uncovering issues, and sharing real solutions.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Sections</h4>
+      <ul>
+        <li><a href="#">National</a></li>
+        <li><a href="#">Politics</a></li>
+        <li><a href="#">World</a></li>
+        <li><a href="#">Business</a></li>
+        <li><a href="#">Technology</a></li>
+        <li><a href="#">Health</a></li>
+        <li><a href="#">Opinion</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Investigations</h4>
+      <ul>
+        <li><a href="#">Latest Reports</a></li>
+        <li><a href="#">Archive</a></li>
+        <li><a href="#">Data &amp; Documents</a></li>
+        <li><a href="#">Submit a Tip</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="tips.html">Contact</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Use</a></li>
+        <li><a href="#">Newsletter</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 GLNewsReports · <a href="https://glnewsreports.com" style="color:inherit;">glnewsreports.com</a></span>
+    <span>Journalism with integrity · All rights reserved</span>
+  </div>
+</footer>
+
+<script>
+  // Date in top bar
+  const d = new Date();
+  document.getElementById('current-date').textContent = d.toLocaleDateString('en-US', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+</script>
+
+</body>
+</html>
