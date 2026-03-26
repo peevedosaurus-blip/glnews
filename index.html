@@ -3,6 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="GLNewsReports brings you the latest local news from Northeast Arkansas with honesty and insight. Investigations, politics, education, business, community and more." />
+  <meta name="author" content="Grendel Levy" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://glnewsreports.com/" />
+
+  <!-- Open Graph (Facebook, LinkedIn) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="GLNewsReports" />
+  <meta property="og:title" content="GLNewsReports — Stories That Matter" />
+  <meta property="og:description" content="GLNewsReports brings you the latest local news from Northeast Arkansas with honesty and insight. Investigations, politics, education, business, community and more." />
+  <meta property="og:url" content="https://glnewsreports.com/" />
+  <meta property="og:image" content="https://res.cloudinary.com/duvikni5b/image/upload/v1774455586/GLnews_ygcvca.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@GLNewsReports" />
+  <meta name="twitter:title" content="GLNewsReports — Stories That Matter" />
+  <meta name="twitter:description" content="GLNewsReports brings you the latest local news from Northeast Arkansas with honesty and insight. Investigations, politics, education, business, community and more." />
+  <meta name="twitter:image" content="https://res.cloudinary.com/duvikni5b/image/upload/v1774455586/GLnews_ygcvca.png" />
   <title>GLNewsReports — Stories That Matter</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet" />
@@ -213,7 +233,7 @@
     /* ── HERO GRID ── */
     .hero-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr 320px;
+      grid-template-columns: 1fr 1fr;
       grid-template-rows: auto auto;
       gap: 0;
       border: 1px solid var(--rule);
@@ -313,44 +333,6 @@
       font-size: 0.87rem;
       color: var(--text-light);
       line-height: 1.55;
-    }
-
-    /* Sidebar stories list */
-    .hero-sidebar {
-      grid-column: 3;
-      grid-row: 1 / 3;
-      background: var(--warm-gray);
-      padding: 1.25rem;
-    }
-    .sidebar-story {
-      padding: 1rem 0;
-      border-bottom: 1px solid var(--rule);
-    }
-    .sidebar-story:first-child { padding-top: 0; }
-    .sidebar-story:last-child { border-bottom: none; padding-bottom: 0; }
-    .sidebar-num {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      font-size: 1.5rem;
-      color: var(--crimson);
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-    .sidebar-hl {
-      font-family: 'Playfair Display', serif;
-      font-size: 0.95rem;
-      font-weight: 700;
-      line-height: 1.3;
-      color: var(--text);
-    }
-    .sidebar-hl a:hover { color: var(--crimson); }
-    .sidebar-meta {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.05em;
-      color: var(--mid-gray);
-      text-transform: uppercase;
-      margin-top: 4px;
     }
 
     /* ── THREE COLUMN ── */
@@ -535,8 +517,6 @@
     @media (max-width: 1024px) {
       .hero-grid { grid-template-columns: 1fr 1fr; }
       .hero-sidebar { grid-column: 1 / 3; grid-row: 3; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; background: var(--warm-gray); }
-      .sidebar-story { border-bottom: none; padding: 0; border-right: 1px solid var(--rule); }
-      .sidebar-story:last-child { border-right: none; }
       .footer-top { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 768px) {
@@ -545,8 +525,6 @@
       .hero-grid { grid-template-columns: 1fr; }
       .hero-main { grid-column: 1; grid-row: auto; border-right: none; border-bottom: 1px solid var(--rule); }
       .hero-sec { border-right: none; }
-      .hero-sidebar { grid-column: 1; grid-row: auto; grid-template-columns: 1fr; }
-      .sidebar-story { border-right: none; border-bottom: 1px solid var(--rule); padding: 0.75rem 0; }
       .three-col { grid-template-columns: 1fr; }
       .feature-strip { grid-template-columns: 1fr; text-align: center; }
       .feature-strip-logo { display: none; }
@@ -668,8 +646,8 @@
         <li><a href="category.html?cat=Education">Education</a></li>
         <li><a href="category.html?cat=Business">Business</a></li>
         <li><a href="category.html?cat=Community">Community</a></li>
-        <li><a href="category.html?cat=Health">Health</a>
-    <a href="category.html?cat=Opinion">Opinion</a></li>
+        <li><a href="category.html?cat=Health">Health</a></li>
+        <li><a href="category.html?cat=Opinion">Opinion</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -747,16 +725,6 @@
       </div>`;
   }
 
-  function sidebarHTML(stories) {
-    return `<div class="section-label" style="margin-bottom:.75rem;">Most Read</div>` +
-      stories.map((s, i) => `
-        <div class="sidebar-story">
-          <div class="sidebar-num">${String(i+1).padStart(2,'0')}</div>
-          <div class="sidebar-hl"><a href="${storyUrl(s.fields.slug)}">${s.fields.headline}</a></div>
-          <div class="sidebar-meta">${firstCat(s.fields.category)} · ${formatDate(s.fields.publishDate)}</div>
-        </div>`).join('');
-  }
-
   function cardHTML(s, assets) {
     const f = s.fields;
     const img = getImgUrl(f.heroImage, assets);
@@ -798,8 +766,6 @@
       let grid = heroMainHTML(stories[0], assets);
       if (stories[1]) grid += heroSecHTML(stories[1], assets);
       if (stories[2]) grid += heroSecHTML(stories[2], assets);
-      const sideStories = stories.slice(stories.length >= 4 ? 3 : 1, 8);
-      grid += `<div class="hero-sidebar">${sidebarHTML(sideStories)}</div>`;
       document.getElementById('hero-grid').innerHTML = grid;
 
       // Cards row 1 (stories 3-5)
